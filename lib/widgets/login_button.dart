@@ -20,7 +20,7 @@ Widget loginButton(BuildContext context, TextEditingController emailController,
             email: emailController.text,
             password: passwordController.text,
           );
-          if (emailController.text == "sobhan" &&
+          if (emailController.text == "sam@nolan" &&
               passwordController.text == "123") {
             ref.read(authLoginProvider(authArgs));
 
@@ -28,6 +28,9 @@ Widget loginButton(BuildContext context, TextEditingController emailController,
             if (isAuthenticated.value!) {
               Navigator.pushNamed(context, 'Home');
             }
+          } else {
+            showSnackBar(context, ContentType.failure, "Oh NO!",
+                "Username or password is not correct");
           }
         } else {
           showSnackBar(context, ContentType.failure, "On Snap!",

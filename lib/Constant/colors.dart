@@ -12,5 +12,5 @@ Color get primaryColor2 => const Color(0xff9DCEFF);
 Color get secondaryColor1 => const Color(0xffC58BF2);
 Color get secondaryColor2 => const Color(0xffEEA4CE);
 
-List<Color> get primaryG => [primaryColor2, primaryColor1];
+List<Color> get primaryG => [primaryColor1, primaryColor2];
 List<Color> get secondaryG => [secondaryColor2, secondaryColor1];

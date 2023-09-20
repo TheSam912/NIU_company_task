@@ -16,34 +16,33 @@ class SettingsScreen extends HookConsumerWidget {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: white,
-      body: Column(
-        children: [
-          Stack(
-            children: [
-              bannerImage(width),
-              settingTitle(),
-              settingBackButton(context)
-            ],
-          ),
-          FadeInLeft(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Stack(
+              children: [
+                bannerImage(width),
+                settingTitle(),
+                settingBackButton(context)
+              ],
+            ),
+            settingsItemBox(110, userBox("user.png", "Sam", "user")),
+            FadeInUp(
               duration: animDuration,
-              child:
-                  settingsItemBox(110, userBox("user.png", "Sobhan", "user"))),
-          FadeInLeft(
-            duration: animDuration,
-            child: GestureDetector(
-                onTap: () async {
-                  final isCleared = await ref.read(resetStorage);
-                  if (isCleared) {
-                    // ignore: use_build_context_synchronously
-                    Navigator.popAndPushNamed(context, 'Login');
-                  }
-                },
-                child:
-                    settingsItemBox(60, userBox("logout.png", "LogOut", ""))),
-          ),
-          myWidget()
-        ],
+              child: GestureDetector(
+                  onTap: () async {
+                    final isCleared = await ref.read(resetStorage);
+                    if (isCleared) {
+                      // ignore: use_build_context_synchronously
+                      Navigator.popAndPushNamed(context, 'Login');
+                    }
+                  },
+                  child:
+                      settingsItemBox(60, userBox("logout.png", "LogOut", ""))),
+            ),
+            myWidget()
+          ],
+        ),
       ),
     );
   }
@@ -78,25 +77,28 @@ Widget settingBackButton(BuildContext context) {
 }
 
 Widget myWidget() {
-  return Column(
-    children: [
-      const SizedBox(
-        height: 60,
-      ),
-      Text(
-        "Made by LOVE for NIU company",
-        style: greyText,
-      ),
-      Text(
-        "Sam Nolan",
-        style: greyText,
-      ),
-      Image(
-        image: const AssetImage('assets/images/logo.png'),
-        width: 40,
-        height: 55,
-        color: mainColor,
-      )
-    ],
+  return FadeInUp(
+    duration: animDuration,
+    child: Column(
+      children: [
+        const SizedBox(
+          height: 40,
+        ),
+        Text(
+          "Made by LOVE for NIU company",
+          style: greyText,
+        ),
+        Text(
+          "Sam Nolan",
+          style: greyText,
+        ),
+        Image(
+          image: const AssetImage('assets/images/logo.png'),
+          width: 40,
+          height: 55,
+          color: mainColor,
+        )
+      ],
+    ),
   );
 }

@@ -1,7 +1,6 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:niu_app/Constant/styles.dart';
-
 import '../Constant/colors.dart';
 
 Widget boxInput(TextEditingController emailController,
@@ -21,19 +20,21 @@ Widget boxInput(TextEditingController emailController,
           ]),
       child: Column(
         children: <Widget>[
-          _inputBox(emailController, "Email"),
-          _inputBox(passwordController, "Password")
+          _inputBox(emailController, "Email: sam@nolan", false),
+          _inputBox(passwordController, "Password: 123", true)
         ],
       ),
     ),
   );
 }
 
-Widget _inputBox(TextEditingController controller, String title) {
+Widget _inputBox(
+    TextEditingController controller, String title, bool isPassword) {
   return Container(
     padding: const EdgeInsets.all(10),
     child: TextField(
       controller: controller,
+      obscureText: isPassword ? true : false,
       decoration: InputDecoration(
           border: InputBorder.none,
           hintText: title,
