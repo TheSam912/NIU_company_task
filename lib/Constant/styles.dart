@@ -6,4 +6,5 @@ TextStyle titleStyle =
     TextStyle(color: mainColor, fontWeight: FontWeight.bold, fontSize: 20);
 TextStyle whiteTitleStyle =
     TextStyle(color: white, fontWeight: FontWeight.bold, fontSize: 20);
+TextStyle greyText = TextStyle(color: grey, fontSize: 12);
 Duration animDuration = const Duration(milliseconds: 1000);

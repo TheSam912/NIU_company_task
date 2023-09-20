@@ -4,13 +4,13 @@ import 'package:health/health.dart';
 
 import 'package:niu_app/Constant/colors.dart';
 import 'package:niu_app/Constant/styles.dart';
-import 'package:niu_app/utils/snackbar.dart';
+import 'package:niu_app/Constant/snackbar.dart';
 import 'package:niu_app/widgets/appbar.dart';
-import 'package:niu_app/widgets/spacer_30dp.dart';
+import 'package:niu_app/widgets/banner.dart';
 import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 
 import '../Constant/strings.dart';
-import '../utils/rounded_button.dart';
+import '../widgets/rounded_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -64,30 +64,27 @@ class _HomeScreenState extends State<HomeScreen> {
     valueNotifier.value = _getSteps.toDouble();
     return Scaffold(
         backgroundColor: white,
-        appBar: PreferredSize(
-            preferredSize: const Size.fromHeight(62),
-            child: myAppbar(
-                "NIU",
-                [
-                  IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, 'Settings');
-                      },
-                      icon: Icon(
-                        Icons.settings,
-                        color: white,
-                      ))
-                ],
-                context)),
         body: SingleChildScrollView(
           child: Column(
             children: [
+              Stack(
+                children: [
+                  bannerImage(size.width),
+                  SafeArea(
+                    child: Center(
+                      child: Text(
+                        "NIU",
+                        style: whiteTitleStyle,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 25, vertical: 15),
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
                     child: Text(
                       "Welcome Back,\nSobhan 👋",
                       style: titleStyle,
@@ -96,9 +93,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.only(right: 18),
                     child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.pushNamed(context, 'Settings');
+                        },
                         icon: Image.asset(
-                          "assets/images/notification_active.png",
+                          "assets/images/settings.png",
                           width: 25,
                           height: 25,
                           fit: BoxFit.fitHeight,
@@ -107,11 +106,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               Container(
-                height: 200,
+                padding: const EdgeInsets.symmetric(vertical: 20),
                 margin:
                     const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
                 decoration: BoxDecoration(
                     gradient: LinearGradient(colors: primaryG),
+                    boxShadow: [
+                      BoxShadow(
+                        color: shadowColor,
+                        blurRadius: 20,
+                        offset: const Offset(0, 10),
+                      )
+                    ],
                     borderRadius: BorderRadius.circular(size.width * 0.075)),
                 child: Stack(alignment: Alignment.center, children: [
                   Image.asset(
@@ -195,10 +201,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ));
   }
 }
-
-// Center(
-//         child: Text("$_getSteps"),
-//       ),
 
 //  Center(
 //             child: ref.watch(getAuthenticatedUserProvider).when(

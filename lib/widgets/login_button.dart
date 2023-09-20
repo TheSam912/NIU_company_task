@@ -3,7 +3,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:niu_app/Constant/styles.dart';
-import 'package:niu_app/utils/snackbar.dart';
+import 'package:niu_app/Constant/snackbar.dart';
 
 import '../states/auth_state.dart';
 import '../states/storage_state.dart';
