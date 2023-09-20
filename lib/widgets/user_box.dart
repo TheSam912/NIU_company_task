@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:niu_app/Constant/colors.dart';
 
-Widget userBox(String image, String username) {
+Widget userBox(String image, String text, String type) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -19,7 +19,7 @@ Widget userBox(String image, String username) {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 0),
             child: Text(
-              "Hello $username 👋",
+              type == "user" ? "Hello $text 👋" : text,
               style: TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold, color: mainColor),
             ),

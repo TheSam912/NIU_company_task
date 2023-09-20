@@ -13,16 +13,19 @@ class HomeScreen extends HookConsumerWidget {
       backgroundColor: white,
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(62),
-          child: myAppbar("NIU", [
-            IconButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, 'Settings');
-                },
-                icon: Icon(
-                  Icons.settings,
-                  color: black,
-                ))
-          ])),
+          child: myAppbar(
+              "NIU",
+              [
+                IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, 'Settings');
+                    },
+                    icon: Icon(
+                      Icons.settings,
+                      color: white,
+                    ))
+              ],
+              context)),
       body: Column(
         children: [
           const SizedBox(

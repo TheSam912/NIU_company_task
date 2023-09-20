@@ -30,7 +30,7 @@ final authenticationHandlerProvider = StateProvider<AuthenticationHandler>(
 
 final authLoginProvider = FutureProvider.family<bool, AuthArgs>(
   (ref, authArgs) async {
-    return Future.delayed(const Duration(seconds: 2), () async {
+    return Future.delayed(const Duration(seconds: 1), () async {
       final authResponse = await ref.watch(authenticationHandlerProvider).login(
             authArgs,
           );
