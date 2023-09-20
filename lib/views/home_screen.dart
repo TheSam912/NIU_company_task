@@ -1,11 +1,15 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';
+
 import 'package:niu_app/Constant/colors.dart';
 import 'package:niu_app/Constant/styles.dart';
 import 'package:niu_app/utils/snackbar.dart';
 import 'package:niu_app/widgets/appbar.dart';
+import 'package:niu_app/widgets/spacer_30dp.dart';
+import 'package:simple_circular_progress_bar/simple_circular_progress_bar.dart';
 
+import '../Constant/strings.dart';
 import '../utils/rounded_button.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -57,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    valueNotifier.value = _getSteps.toDouble();
     return Scaffold(
         backgroundColor: white,
         appBar: PreferredSize(
@@ -82,14 +87,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 15),
+                        horizontal: 25, vertical: 15),
                     child: Text(
                       "Welcome Back,\nSobhan 👋",
                       style: titleStyle,
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 12),
+                    padding: const EdgeInsets.only(right: 18),
                     child: IconButton(
                         onPressed: () {},
                         icon: Image.asset(
@@ -102,7 +107,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               Container(
-                height: size.width * 0.4,
+                height: 200,
+                margin:
+                    const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
                 decoration: BoxDecoration(
                     gradient: LinearGradient(colors: primaryG),
                     borderRadius: BorderRadius.circular(size.width * 0.075)),
@@ -124,62 +131,65 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "BMI (Body Mass Index)",
+                              today,
                               style: TextStyle(
                                   color: white,
-                                  fontSize: 14,
+                                  fontSize: 18,
                                   fontWeight: FontWeight.w700),
                             ),
                             Text(
-                              "You have a normal weight",
+                              "Normal steps for male:",
                               style: TextStyle(
-                                  color: white.withOpacity(0.7), fontSize: 12),
+                                  color: white.withOpacity(0.8), fontSize: 14),
+                            ),
+                            Text(
+                              "5,340",
+                              style: TextStyle(
+                                  color: white.withOpacity(0.8),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w800),
                             ),
                             SizedBox(
                               height: size.width * 0.05,
                             ),
                             SizedBox(
-                                width: 120,
-                                height: 35,
+                                width: 140,
+                                height: 40,
                                 child: RoundButton(
-                                    title: "View More",
+                                    title: "Your's: $_getSteps",
                                     type: RoundButtonType.bgSGradient,
                                     fontSize: 12,
-                                    fontWeight: FontWeight.w400,
+                                    fontWeight: FontWeight.w800,
                                     onPressed: () {}))
                           ],
                         ),
+                        Padding(
+                          padding: const EdgeInsets.only(right: 12),
+                          child: RepaintBoundary(
+                            child: SimpleCircularProgressBar(
+                              maxValue: 5340,
+                              valueNotifier: valueNotifier,
+                              progressStrokeWidth: 20,
+                              backStrokeWidth: 10,
+                              progressColors: secondaryG,
+                              backColor: primaryColor2,
+                              onGetText: (double value) {
+                                return Text(
+                                  '${value.toInt()}\nSteps',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                      color: white),
+                                );
+                              },
+                            ),
+                          ),
+                        )
                       ],
                     ),
-                  )
+                  ),
                 ]),
               ),
-              RepaintBoundary(
-                child: GestureDetector(
-                  key: ValueKey(keyForRepaint),
-                  onTap: () {
-                    valueNotifier.value = 100.0;
-                    keyForRepaint++;
-                    setState(() {});
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'SELECT THE THICKNESS OF THE LINES',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: black,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                    ],
-                  ),
-                ),
-              )
             ],
           ),
         ));
