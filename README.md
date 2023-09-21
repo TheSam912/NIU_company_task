@@ -1,5 +1,7 @@
 # niu_app
 
+![alt text]([http://url/to/img.png](https://www.dropbox.com/scl/fi/59zlwc2jkov3mb08rxpgy/poster.jpg?rlkey=oppow0r85goa10q804lcyebff&dl=0))
+
 Overview
 The NIU application seamlessly integrates with your device's activity tracking system, intelligently choosing between Google Fitness for Android and Apple Health for iOS to accurately monitor and display your step count. This dynamic selection ensures compatibility with your specific device.
 To access the features of this application, we've implemented a secure local authentication system powered by Riverpod, Hook, and SharedPreferences. This system allows you to securely store your username and password, simplifying the login process. Once logged in, you grant permission to access your device's activity data, ensuring a hassle-free experience.
