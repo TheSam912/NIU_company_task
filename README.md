@@ -1,6 +1,6 @@
 # niu_app
 
-![alt text](https://i.pinimg.com/474x/e7/4d/3b/e74d3b27e1b932f8c032ea4003989e3d.jpg))
+![alt text](https://i.pinimg.com/474x/e7/4d/3b/e74d3b27e1b932f8c032ea4003989e3d.jpg)
 
 Overview
 The NIU application seamlessly integrates with your device's activity tracking system, intelligently choosing between Google Fitness for Android and Apple Health for iOS to accurately monitor and display your step count. This dynamic selection ensures compatibility with your specific device.
