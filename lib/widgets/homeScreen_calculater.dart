@@ -16,11 +16,14 @@ Widget homeScreen_calculater(
       margin: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
       decoration: stepsContainerDecoration,
       child: Stack(alignment: Alignment.center, children: [
-        Image.asset(
-          "assets/images/bg_dots.png",
-          height: width * 0.4,
-          width: double.maxFinite,
-          fit: BoxFit.fitHeight,
+        Opacity(
+          opacity: 0.6,
+          child: Image.asset(
+            "assets/images/bg_dots.png",
+            height: width * 0.4,
+            width: double.maxFinite,
+            fit: BoxFit.fitHeight,
+          ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 25),
