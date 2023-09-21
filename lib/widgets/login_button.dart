@@ -2,8 +2,9 @@ import 'package:animate_do/animate_do.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:niu_app/Constant/styles.dart';
+import 'package:niu_app/Constant/colors.dart';
 import 'package:niu_app/Constant/snackbar.dart';
+import 'package:niu_app/Constant/styles.dart';
 
 import '../states/auth_state.dart';
 import '../states/storage_state.dart';
@@ -39,10 +40,10 @@ Widget loginButton(BuildContext context, TextEditingController emailController,
       },
       child: Container(
         height: 50,
-        margin: const EdgeInsets.symmetric(horizontal: 60),
+        margin: const EdgeInsets.symmetric(horizontal: 60, vertical: 8),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(50),
-          color: const Color.fromRGBO(49, 39, 79, 1),
+          color: mainColor,
         ),
         child: const Center(
           child: Text(

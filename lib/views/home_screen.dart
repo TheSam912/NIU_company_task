@@ -1,8 +1,11 @@
+import 'dart:io' show Platform;
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:health/health.dart';
 import 'package:niu_app/Constant/colors.dart';
 import 'package:niu_app/Constant/snackbar.dart';
+
 import '../widgets/homeScreen_appbar.dart';
 import '../widgets/homeScreen_calculater.dart';
 import '../widgets/homeScreen_statusbar.dart';
@@ -15,15 +18,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  //define variables for Circlular progress indicator
+  //define variables for Circular progress indicator
   late ValueNotifier<double> valueNotifier;
   int keyForRepaint = 0;
   //variables and auth for using health app for IOS devices
   int _getSteps = 0;
   HealthFactory health = HealthFactory();
 
+  void checkDevice() {
+    if (Platform.isAndroid) {
+      print("Android");
+    } else if (Platform.isIOS) {
+      fetchStepDataIOS();
+    }
+  }
+
   //Define future for getting steps from health for IOS devices
-  Future fetchStepData() async {
+  Future fetchStepDataIOS() async {
     int? steps;
     var types = [HealthDataType.STEPS];
     final now = DateTime.now();
@@ -51,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    fetchStepData();
+    fetchStepDataIOS();
     valueNotifier = ValueNotifier(0.0);
   }
 
@@ -81,9 +92,3 @@ class _HomeScreenState extends State<HomeScreen> {
 //debugPrint(error.toString());
 //return const Text('User information is not available!');
 //})),
-
-
-
-
-
-
