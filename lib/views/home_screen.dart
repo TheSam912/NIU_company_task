@@ -52,31 +52,40 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-        backgroundColor: white,
-        body: FutureBuilder(
-          future: deviceType == "Android"
-              ? fetchStepDataAndroid()
-              : fetchStepDataIOS(context),
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) {
-              return Center(
-                  child: CircularProgressIndicator(
-                color: primaryColor1,
-              ));
-            } else {
-              _getSteps = snapshot.data;
+      backgroundColor: white,
+      body: FutureBuilder(
+        future: deviceType == "Android"
+            ? fetchStepDataAndroid()
+            : fetchStepDataIOS(context),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return Center(
+                child: CircularProgressIndicator(
+              color: primaryColor1,
+            ));
+          } else {
+            _getSteps = snapshot.data;
+            valueNotifier.value = _getSteps.toDouble();
+            return SingleChildScrollView(
+                child: Column(
+              children: [
+                homeScreen_appbar(size.width),
+                homeScreen_statusbar(context),
+                homeScreen_calculater(size.width, valueNotifier, _getSteps),
+              ],
+            ));
+          }
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            setState(() {
               valueNotifier.value = _getSteps.toDouble();
-              return SingleChildScrollView(
-                  child: Column(
-                children: [
-                  homeScreen_appbar(size.width),
-                  homeScreen_statusbar(context),
-                  homeScreen_calculater(size.width, valueNotifier, _getSteps),
-                ],
-              ));
-            }
+            });
           },
-        ));
+          backgroundColor: secondaryColor1,
+          child: const Icon(Icons.refresh)),
+    );
   }
 }
 
